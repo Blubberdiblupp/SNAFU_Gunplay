@@ -1,0 +1,257 @@
+ImageWidgetClass SNAFUStatsDisplay {
+ visible 1
+ clipchildren 0
+ ignorepointer 1
+ color 0 0 0 0.62
+ size 394 88
+ halign right_ref
+ valign bottom_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ scaled 1
+ mode blend
+ {
+  ImageWidgetClass tier {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.92
+   position 5 4
+   size 384 16
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   mode blend
+   {
+    TextWidgetClass tier_label {
+     ignorepointer 1
+     color 0.6863 0.5804 0.2588 1
+     position 4 0
+     size 62 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Tier:"
+     font "gui/fonts/etelkatextpro14"
+     "text valign" center
+    }
+    TextWidgetClass tier_value {
+     ignorepointer 1
+     position 70 0
+     size 308 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "-"
+     font "gui/fonts/etelkatextpro14"
+     "text halign" right
+     "text valign" center
+    }
+   }
+  }
+  ImageWidgetClass recoil {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.92
+   position 5 22
+   size 190 15
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   mode blend
+   {
+    TextWidgetClass recoil_label {
+     ignorepointer 1
+     color 0.6863 0.5804 0.2588 1
+     position 4 0
+     size 70 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Recoil:"
+     font "gui/fonts/etelkatextpro14"
+     "text valign" center
+    }
+    TextWidgetClass recoil_value {
+     ignorepointer 1
+     position 74 0
+     size 110 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "-"
+     font "gui/fonts/etelkatextpro14"
+     "text halign" right
+     "text valign" center
+    }
+   }
+  }
+  ImageWidgetClass sway {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.92
+   position 200 22
+   size 189 15
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   mode blend
+   {
+    TextWidgetClass sway_label {
+     ignorepointer 1
+     color 0.6863 0.5804 0.2588 1
+     position 4 0
+     size 70 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Sway:"
+     font "gui/fonts/etelkatextpro14"
+     "text valign" center
+    }
+    TextWidgetClass sway_value {
+     ignorepointer 1
+     position 74 0
+     size 109 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "-"
+     font "gui/fonts/etelkatextpro14"
+     "text halign" right
+     "text valign" center
+    }
+   }
+  }
+  ImageWidgetClass ads {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.92
+   position 5 39
+   size 190 15
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   mode blend
+   {
+    TextWidgetClass ads_label {
+     ignorepointer 1
+     color 0.6863 0.5804 0.2588 1
+     position 4 0
+     size 70 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "ADS:"
+     font "gui/fonts/etelkatextpro14"
+     "text valign" center
+    }
+    TextWidgetClass ads_value {
+     ignorepointer 1
+     position 74 0
+     size 110 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "-"
+     font "gui/fonts/etelkatextpro14"
+     "text halign" right
+     "text valign" center
+    }
+   }
+  }
+  ImageWidgetClass precision {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.92
+   position 200 39
+   size 189 15
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   mode blend
+   {
+    TextWidgetClass precision_label {
+     ignorepointer 1
+     color 0.6863 0.5804 0.2588 1
+     position 4 0
+     size 76 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Precision:"
+     font "gui/fonts/etelkatextpro14"
+     "text valign" center
+    }
+    TextWidgetClass precision_value {
+     ignorepointer 1
+     position 84 0
+     size 99 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "-"
+     font "gui/fonts/etelkatextpro14"
+     "text halign" right
+     "text valign" center
+    }
+   }
+  }
+  ImageWidgetClass hipfire {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.92
+   position 5 56
+   size 190 15
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   mode blend
+   {
+    TextWidgetClass hipfire_label {
+     ignorepointer 1
+     color 0.6863 0.5804 0.2588 1
+     position 4 0
+     size 70 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Hipfire:"
+     font "gui/fonts/etelkatextpro14"
+     "text valign" center
+    }
+    TextWidgetClass hipfire_value {
+     ignorepointer 1
+     position 74 0
+     size 110 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "-"
+     font "gui/fonts/etelkatextpro14"
+     "text halign" right
+     "text valign" center
+    }
+   }
+  }
+ }
+}
