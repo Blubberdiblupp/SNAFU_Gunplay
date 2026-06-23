@@ -94,8 +94,8 @@ class SNAFUGunplayConfig
 		GlobalAimSpeedMultiplier = 0.95;
 		EnableHipFireNerf = true;
 		EnableWeaponGeometryDamage = true;
-		GripRecoilReduction = 0.15;
-		GripSwayReduction = 0.2;
+		GripRecoilReduction = 0.30;
+		GripSwayReduction = 0.30;
 		HeavyScopeAimSpeedPenalty = 0.3;
 		LightScopeAimSpeedPenalty = 0.1;
 		HipFireAccuracyDegradation = 0.65;
@@ -107,15 +107,15 @@ class SNAFUGunplayConfig
 		
 		HighCapMagazineThreshold = 30;
 		
-		Modifier_Buttstock_Recoil = 0.70;
-		Modifier_Buttstock_Sway = 0.70;
-		Modifier_PistolGrip_Recoil = 0.85;
+		Modifier_Buttstock_Recoil = 0.10;
+		Modifier_Buttstock_Sway = 0.55;
+		Modifier_PistolGrip_Recoil = 0.55;
 		Modifier_PistolGrip_ADS = 1.10;
-		Modifier_Foregrip_Recoil = 0.80;
+		Modifier_Foregrip_Recoil = 0.40;
 		Modifier_Foregrip_ADS = 1.10;
-		Modifier_Handguard_Sway = 0.80;
+		Modifier_Handguard_Sway = 0.70;
 		Modifier_Handguard_Precision = 1.20;
-		Modifier_Bipod_Sway = 0.60;
+		Modifier_Bipod_Sway = 0.40;
 		Modifier_Bipod_ADS = 0.85;
 		Modifier_Laser_HipFire = 0.50;
 		Modifier_Flashlight_Sway = 1.03;
@@ -133,36 +133,36 @@ class SNAFUGunplayConfig
 	{
 		AttachmentTierEffects.Clear();
 		
-		SetTierEffect("Foregrip_T1", "Foregrip", "T1", 0.90, 0.95, 1.03, 1.05, 0.90);
-		SetTierEffect("Foregrip_T2", "Foregrip", "T2", 0.80, 0.90, 1.06, 1.10, 0.80);
-		SetTierEffect("Foregrip_T3", "Foregrip", "T3", 0.70, 0.85, 1.08, 1.15, 0.70);
+		SetTierEffect("Foregrip_T1", "Foregrip", "T1", 0.70, 0.925, 1.03, 1.05, 0.90);
+		SetTierEffect("Foregrip_T2", "Foregrip", "T2", 0.40, 0.85, 1.06, 1.10, 0.80);
+		SetTierEffect("Foregrip_T3", "Foregrip", "T3", 0.10, 0.775, 1.08, 1.15, 0.70);
 		
-		SetTierEffect("PistolGrip_T1", "Pistol Grip", "T1", 0.90, 1.00, 1.05, 1.00, 0.90);
-		SetTierEffect("PistolGrip_T2", "Pistol Grip", "T2", 0.80, 0.98, 1.10, 1.02, 0.80);
-		SetTierEffect("PistolGrip_T3", "Pistol Grip", "T3", 0.70, 0.96, 1.15, 1.04, 0.70);
+		SetTierEffect("PistolGrip_T1", "Pistol Grip", "T1", 0.70, 1.00, 1.05, 1.00, 0.90);
+		SetTierEffect("PistolGrip_T2", "Pistol Grip", "T2", 0.40, 0.97, 1.10, 1.02, 0.80);
+		SetTierEffect("PistolGrip_T3", "Pistol Grip", "T3", 0.10, 0.94, 1.15, 1.04, 0.70);
 		
-		SetTierEffect("Stock_T1", "Stock", "T1", 0.90, 0.90, 1.00, 1.05, 1.00);
-		SetTierEffect("Stock_T2", "Stock", "T2", 0.80, 0.80, 0.99, 1.10, 1.00);
-		SetTierEffect("Stock_T3", "Stock", "T3", 0.70, 0.70, 0.98, 1.15, 1.00);
+		SetTierEffect("Stock_T1", "Stock", "T1", 0.70, 0.85, 1.00, 1.05, 1.00);
+		SetTierEffect("Stock_T2", "Stock", "T2", 0.40, 0.70, 0.99, 1.10, 1.00);
+		SetTierEffect("Stock_T3", "Stock", "T3", 0.10, 0.55, 0.98, 1.15, 1.00);
 		
-		SetTierEffect("Handguard_T1", "Handguard", "T1", 1.00, 0.90, 1.02, 1.10, 0.90);
-		SetTierEffect("Handguard_T2", "Handguard", "T2", 0.98, 0.80, 1.04, 1.20, 0.80);
-		SetTierEffect("Handguard_T3", "Handguard", "T3", 0.96, 0.70, 1.06, 1.30, 0.70);
+		SetTierEffect("Handguard_T1", "Handguard", "T1", 1.00, 0.85, 1.02, 1.10, 0.90);
+		SetTierEffect("Handguard_T2", "Handguard", "T2", 0.94, 0.70, 1.04, 1.20, 0.80);
+		SetTierEffect("Handguard_T3", "Handguard", "T3", 0.88, 0.55, 1.06, 1.30, 0.70);
 		
-		SetTierEffect("Bipod_Special", "Bipod", "Special", 0.90, 0.62, 0.86, 1.16, 1.00);
-		SetTierEffect("LightOptic_T1", "Optic", "T1", 1.00, 0.99, 1.05, 1.10, 1.00);
-		SetTierEffect("HeavyOptic_T2", "Optic", "T2", 1.00, 0.98, 0.95, 1.20, 1.00);
-		SetTierEffect("SniperOptic_T3", "Optic", "T3", 1.00, 0.97, 0.85, 1.30, 1.00);
+		SetTierEffect("Bipod_Special", "Bipod", "Special", 0.70, 0.43, 0.86, 1.16, 1.00);
+		SetTierEffect("LightOptic_T1", "Optic", "T1", 1.00, 0.985, 1.05, 1.10, 1.00);
+		SetTierEffect("HeavyOptic_T2", "Optic", "T2", 1.00, 0.97, 0.95, 1.20, 1.00);
+		SetTierEffect("SniperOptic_T3", "Optic", "T3", 1.00, 0.955, 0.85, 1.30, 1.00);
 		SetTierEffect("Laser_Tactical", "Laser", "Tactical", 1.00, 1.00, 1.00, 1.00, 0.55);
 		SetTierEffect("Flashlight_Utility", "Flashlight", "Utility", 1.00, 1.04, 0.96, 1.00, 1.00);
 		SetTierEffect("Bayonet_Heavy", "Bayonet", "Heavy", 1.00, 1.08, 0.92, 1.00, 1.00);
-		SetTierEffect("Muzzle_T1", "Muzzle", "T1", 0.95, 0.95, 1.00, 1.05, 0.95);
-		SetTierEffect("Muzzle_T2", "Muzzle", "T2", 0.90, 0.90, 0.99, 1.10, 0.90);
-		SetTierEffect("Muzzle_T3", "Muzzle", "T3", 0.85, 0.85, 0.98, 1.15, 0.85);
-		SetTierEffect("Suppressor_T1", "Suppressor", "T1", 0.95, 1.00, 0.98, 1.05, 0.95);
-		SetTierEffect("Suppressor_T2", "Suppressor", "T2", 0.90, 1.01, 0.96, 1.10, 0.90);
-		SetTierEffect("Suppressor_T3", "Suppressor", "T3", 0.85, 1.02, 0.94, 1.15, 0.85);
-		SetTierEffect("WeaponWrap_Utility", "Wrap", "Utility", 1.00, 0.95, 0.97, 1.03, 1.00);
+		SetTierEffect("Muzzle_T1", "Muzzle", "T1", 0.85, 0.925, 1.00, 1.05, 0.95);
+		SetTierEffect("Muzzle_T2", "Muzzle", "T2", 0.70, 0.85, 0.99, 1.10, 0.90);
+		SetTierEffect("Muzzle_T3", "Muzzle", "T3", 0.55, 0.775, 0.98, 1.15, 0.85);
+		SetTierEffect("Suppressor_T1", "Suppressor", "T1", 0.85, 1.00, 0.98, 1.05, 0.95);
+		SetTierEffect("Suppressor_T2", "Suppressor", "T2", 0.70, 1.01, 0.96, 1.10, 0.90);
+		SetTierEffect("Suppressor_T3", "Suppressor", "T3", 0.55, 1.02, 0.94, 1.15, 0.85);
+		SetTierEffect("WeaponWrap_Utility", "Wrap", "Utility", 1.00, 0.925, 0.97, 1.03, 1.00);
 		SetTierEffect("StandardMag_Neutral", "Magazine", "Standard", 1.00, 1.00, 1.00, 1.00, 1.00);
 		SetTierEffect("HighCap_Heavy", "Magazine", "HighCap", 1.02, 1.03, 0.98, 1.00, 1.00);
 		SetTierEffect("Neutral", "Neutral", "Neutral", 1.00, 1.00, 1.00, 1.00, 1.00);

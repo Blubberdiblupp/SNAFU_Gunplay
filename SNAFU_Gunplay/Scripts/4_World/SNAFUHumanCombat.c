@@ -1,22 +1,27 @@
 modded class DayZPlayerImplement
 {
+	override void SwitchOptics(ItemOptics optic, bool state)
+	{
+		super.SwitchOptics(optic, state);
+	}
+	
 	override bool IsShootingFromCamera()
 	{
 		SNAFUGunplayConfig config = SNAFUGunplayConfig.GetInstance();
 		if (!config)
 		{
-			return m_IsShootingFromCamera;
+			return super.IsShootingFromCamera();
 		}
 
 		if (!config.EnableHipFireNerf)
 		{
-			return m_IsShootingFromCamera;
+			return super.IsShootingFromCamera();
 		}
 
 		PlayerBase player = PlayerBase.Cast(this);
 		if (player && SNAFUVehicleCombatHandler.IsPlayerInVehicle(player))
 		{
-			return m_IsShootingFromCamera;
+			return super.IsShootingFromCamera();
 		}
 
 		return false;

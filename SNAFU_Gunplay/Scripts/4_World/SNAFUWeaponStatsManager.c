@@ -303,25 +303,127 @@ class SNAFUWeaponStatsManager
 	float GetBaseRecoil(Weapon_Base weapon)
 	{
 		if (!weapon) return 1.0;
-		return 1.0;
+		return GetBaseRecoilByType(weapon.GetType());
 	}
 	
 	float GetBaseSway(Weapon_Base weapon)
 	{
 		if (!weapon) return 1.0;
-		return 1.0;
+		return GetBaseSwayByType(weapon.GetType());
 	}
 	
 	float GetBaseAimSpeed(Weapon_Base weapon)
 	{
 		if (!weapon) return 1.0;
-		return 1.0;
+		return GetBaseAimSpeedByType(weapon.GetType());
 	}
 	
 	float GetBasePrecision(Weapon_Base weapon)
 	{
 		if (!weapon) return 1.0;
-		return 1.0;
+		return GetBasePrecisionByType(weapon.GetType());
+	}
+	
+	float GetBaseRecoilByType(string weaponType)
+	{
+		float configRecoil = GetAverageConfigFloatArray("CfgWeapons " + weaponType + " recoilModifier", 1.0);
+		float weight = GetWeaponWeightKg(weaponType);
+		float weightReduction = ClampFloat((weight - 3.0) * 0.025, -0.06, 0.12);
+		
+		return ClampFloat(configRecoil * (1.0 - weightReduction), 0.65, 1.85);
+	}
+	
+	float GetBaseSwayByType(string weaponType)
+	{
+		float configSway = GetAverageConfigFloatArray("CfgWeapons " + weaponType + " swayModifier", 1.0);
+		float weight = GetWeaponWeightKg(weaponType);
+		float length = GetWeaponLengthMeters(weaponType);
+		float weightPenalty = ClampFloat((weight - 3.0) * 0.025, -0.05, 0.16);
+		float lengthPenalty = ClampFloat((length - 0.7) * 0.18, -0.06, 0.14);
+		
+		return ClampFloat(configSway * (1.0 + weightPenalty + lengthPenalty), 0.70, 1.95);
+	}
+	
+	float GetBaseAimSpeedByType(string weaponType)
+	{
+		float configAimSpeed = GetAverageConfigFloatArray("CfgWeapons " + weaponType + " aimSpeedModifier", 0.35);
+		float weight = GetWeaponWeightKg(weaponType);
+		float length = GetWeaponLengthMeters(weaponType);
+		float normalizedAimSpeed = 0.35 / ClampFloat(configAimSpeed, 0.12, 1.20);
+		float weightPenalty = ClampFloat((weight - 3.0) * 0.018, -0.05, 0.14);
+		float lengthPenalty = ClampFloat((length - 0.7) * 0.14, -0.05, 0.12);
+		
+		return ClampFloat(normalizedAimSpeed * (1.0 - weightPenalty - lengthPenalty), 0.65, 1.35);
+	}
+	
+	float GetBasePrecisionByType(string weaponType)
+	{
+		float length = GetWeaponLengthMeters(weaponType);
+		float weight = GetWeaponWeightKg(weaponType);
+		float lengthBonus = ClampFloat((length - 0.55) * 0.20, -0.08, 0.18);
+		float weightBonus = ClampFloat((weight - 3.0) * 0.010, -0.04, 0.08);
+		
+		return ClampFloat(1.0 + lengthBonus + weightBonus, 0.85, 1.25);
+	}
+	
+	protected float GetWeaponWeightKg(string weaponType)
+	{
+		float weight = GetGame().ConfigGetFloat("CfgWeapons " + weaponType + " weight");
+		if (weight <= 0.0)
+		{
+			return 3.0;
+		}
+		
+		return weight / 1000.0;
+	}
+	
+	protected float GetWeaponLengthMeters(string weaponType)
+	{
+		float length = GetGame().ConfigGetFloat("CfgWeapons " + weaponType + " WeaponLength");
+		if (length <= 0.0)
+		{
+			return 0.7;
+		}
+		
+		return length;
+	}
+	
+	protected float GetAverageConfigFloatArray(string path, float fallback)
+	{
+		if (!GetGame().ConfigIsExisting(path))
+		{
+			return fallback;
+		}
+		
+		TFloatArray values = new TFloatArray;
+		GetGame().ConfigGetFloatArray(path, values);
+		if (values.Count() == 0)
+		{
+			return fallback;
+		}
+		
+		float total = 0.0;
+		foreach (float value : values)
+		{
+			total += value;
+		}
+		
+		return total / values.Count();
+	}
+	
+	protected float ClampFloat(float value, float minValue, float maxValue)
+	{
+		if (value < minValue)
+		{
+			return minValue;
+		}
+		
+		if (value > maxValue)
+		{
+			return maxValue;
+		}
+		
+		return value;
 	}
 	
 	void ApplyAttachmentModifiers(Weapon_Base weapon, SNAFUGunplayConfig config)

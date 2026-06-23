@@ -78,7 +78,13 @@ class SNAFUDisplayStats
 			return null;
 		}
 		
-		SNAFUTierEffect effect = new SNAFUTierEffect("Weapon", "Total", config.GlobalRecoilMultiplier, config.GlobalSwayMultiplier, config.GlobalAimSpeedMultiplier, 1.0, 1.0);
+		SNAFUWeaponStatsManager manager = new SNAFUWeaponStatsManager();
+		float baseRecoil = manager.GetBaseRecoilByType(itemType);
+		float baseSway = manager.GetBaseSwayByType(itemType);
+		float baseAimSpeed = manager.GetBaseAimSpeedByType(itemType);
+		float basePrecision = manager.GetBasePrecisionByType(itemType);
+		
+		SNAFUTierEffect effect = new SNAFUTierEffect("Weapon", "Total", baseRecoil * config.GlobalRecoilMultiplier, baseSway * config.GlobalSwayMultiplier, baseAimSpeed * config.GlobalAimSpeedMultiplier, basePrecision, 1.0);
 		ApplyAttachmentTypes(effect, attachmentTypes);
 		
 		return effect;

@@ -25,6 +25,11 @@ modded class Weapon_Base
 	
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
+		if (item)
+		{
+			m_StatsDirty = true;
+		}
+		
 		super.EEItemAttached(item, slot_name);
 		
 		if (!item) return;
@@ -46,8 +51,6 @@ modded class Weapon_Base
 			return;
 		}
 		
-		m_StatsDirty = true;
-		
 		if (GetGame().IsServer())
 		{
 			SNAFUGunplayConfig attachConfig = SNAFUGunplayConfig.GetInstance();
@@ -62,6 +65,11 @@ modded class Weapon_Base
 	
 	override void EEItemDetached(EntityAI item, string slot_name)
 	{
+		if (item)
+		{
+			m_StatsDirty = true;
+		}
+		
 		super.EEItemDetached(item, slot_name);
 		
 		if (!item) return;
@@ -82,8 +90,6 @@ modded class Weapon_Base
 			}
 			return;
 		}
-		
-		m_StatsDirty = true;
 		
 		if (GetGame().IsServer())
 		{
@@ -168,6 +174,28 @@ modded class Weapon_Base
 		}
 		
 		return 1.0;
+	}
+	
+	int GetSNAFUOpticEnterDelay()
+	{
+		float aimSpeed = GetOpticsDisableLookOverride();
+		if (aimSpeed <= 0.05)
+		{
+			aimSpeed = 1.0;
+		}
+		
+		float delay = 700.0 / aimSpeed;
+		if (delay < 150.0)
+		{
+			delay = 150.0;
+		}
+		
+		if (delay > 1400.0)
+		{
+			delay = 1400.0;
+		}
+		
+		return Math.Round(delay);
 	}
 	
 	float GetHipFireSpreadModifier()
