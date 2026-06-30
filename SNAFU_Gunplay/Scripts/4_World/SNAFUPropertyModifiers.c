@@ -10,8 +10,14 @@ modded class PropertyModifiers
 			return;
 		}
 		
+		if (!weapon.SNAFUShouldApplyGunplay())
+		{
+			return;
+		}
+		
 		float recoilModifier = weapon.GetWeaponRecoilModifier();
-		float swayModifier = weapon.GetDispersion();
+		float swayModifier = weapon.GetAimingSwayModifier();
+		float swaySpeedModifier = weapon.GetAimingSwaySpeedModifier();
 		
 		if (recoilModifier > 0.0)
 		{
@@ -24,7 +30,7 @@ modded class PropertyModifiers
 		{
 			m_SwayModifiers[0] = swayModifier;
 			m_SwayModifiers[1] = swayModifier;
-			m_SwayModifiers[2] = swayModifier;
+			m_SwayModifiers[2] = swaySpeedModifier;
 		}
 		
 		SNAFUGunplayConfig config = SNAFUGunplayConfig.GetInstance();

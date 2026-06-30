@@ -32,6 +32,8 @@ class SNAFUGunplayConfig
 	float GlobalRecoilMultiplier;
 	float GlobalSwayMultiplier;
 	float GlobalAimSpeedMultiplier;
+	float GlobalHipFireMultiplier;
+	float GlobalPrecisionMultiplier;
 	bool EnableHipFireNerf;
 	bool EnableWeaponGeometryDamage;
 	float GripRecoilReduction;
@@ -92,6 +94,8 @@ class SNAFUGunplayConfig
 		GlobalRecoilMultiplier = 1.08;
 		GlobalSwayMultiplier = 1.08;
 		GlobalAimSpeedMultiplier = 0.95;
+		GlobalHipFireMultiplier = 1.0;
+		GlobalPrecisionMultiplier = 1.0;
 		EnableHipFireNerf = true;
 		EnableWeaponGeometryDamage = true;
 		GripRecoilReduction = 0.30;
@@ -127,6 +131,7 @@ class SNAFUGunplayConfig
 		
 		InitDefaultTierEffects();
 		InitDefaultAttachmentTiers();
+		ApplyAdminConfig(SNAFUGetAdminConfig());
 	}
 	
 	void InitDefaultTierEffects()
@@ -174,16 +179,28 @@ class SNAFUGunplayConfig
 		
 		SetAttachmentTier("FGRIP", "Foregrip_T1");
 		SetAttachmentTier("snafuar15afg", "Foregrip_T2");
+		SetAttachmentTier("FGrip_Base", "Foregrip_T1");
+		SetAttachmentTier("SA58_FGrip", "Foregrip_T1");
+		SetAttachmentTier("SNAFU_AFG_02_Base", "Foregrip_T2");
+		SetAttachmentTier("SNAFU_AFG_02_Black", "Foregrip_T2");
+		SetAttachmentTier("SNAFU_AFG_02_OD", "Foregrip_T2");
+		SetAttachmentTier("SNAFU_AFG_02_Tan", "Foregrip_T2");
+		SetAttachmentTier("SNAFUAR15_AFG", "Foregrip_T2");
+		SetAttachmentTier("SNAFUScar_AFG_BK", "Foregrip_T2");
+		SetAttachmentTier("SNAFUScar_AFG_Tan", "Foregrip_T2");
 		SetAttachmentTier("weaponGripCQR", "Foregrip_T2");
 		SetAttachmentTier("weaponGripKAAR", "Foregrip_T3");
 		SetAttachmentTier("SNAFU_M249Grip", "Foregrip_T2");
 		SetAttachmentTier("SNAFUSR3Grip", "Foregrip_T2");
+		SetAttachmentTier("SNAFU_SR3Grip", "Foregrip_T2");
 		SetAttachmentTier("weaponrgripSNAFU", "Foregrip_T2");
 		
 		SetAttachmentTier("weaponGrip", "PistolGrip_T1");
 		SetAttachmentTier("weaponGripAK", "PistolGrip_T2");
 		SetAttachmentTier("weaponPistolGrip", "PistolGrip_T2");
 		SetAttachmentTier("SNAFUMPXGRIP", "PistolGrip_T2");
+		SetAttachmentTier("SNAFUMPX_Grip", "PistolGrip_T2");
+		SetAttachmentTier("SNAFUMPX_Grip_Base", "PistolGrip_T2");
 		
 		SetAttachmentTier("SNAFU_M249Stock", "Stock_T2");
 		SetAttachmentTier("SNAFU_M200Stock", "Stock_T3");
@@ -230,12 +247,22 @@ class SNAFUGunplayConfig
 		SetAttachmentTier("weaponHGSNAFU16NA", "Handguard_T3");
 		
 		SetAttachmentTier("snafuweaponBipod", "Bipod_Special");
+		SetAttachmentTier("SNAFU_AtlasBipod", "Bipod_Special");
+		SetAttachmentTier("SNAFU_Atlasbipod_Base", "Bipod_Special");
+		SetAttachmentTier("SNAFU_Bipod", "Bipod_Special");
+		SetAttachmentTier("SNAFU_Bipod_Base", "Bipod_Special");
+		SetAttachmentTier("SNAFU_ModBipod", "Bipod_Special");
 		SetAttachmentTier("SNAFU_M249Bipod", "Bipod_Special");
 		SetAttachmentTier("SNAFU_M200B_BK", "Bipod_Special");
 		SetAttachmentTier("SNAFU_M200Bipod_Base", "Bipod_Special");
 		SetAttachmentTier("snafuvsskBipod", "Bipod_Special");
+		SetAttachmentTier("SNAFU_VSSKbipod", "Bipod_Special");
+		SetAttachmentTier("SNAFU_VSSKbipod_Base", "Bipod_Special");
 		SetAttachmentTier("sr25bipod", "Bipod_Special");
 		SetAttachmentTier("PKPBIPOD", "Bipod_Special");
+		SetAttachmentTier("SNAFU_NPKPBIPOD", "Bipod_Special");
+		SetAttachmentTier("SNAFU_PKPBIPOD", "Bipod_Special");
+		SetAttachmentTier("SNAFU_PKPBIPOD_Base", "Bipod_Special");
 		
 		SetAttachmentTier("SNAFU_RDS", "LightOptic_T1");
 		SetAttachmentTier("SNAFU_EOTech_EXPS3", "LightOptic_T1");
@@ -346,6 +373,15 @@ class SNAFUGunplayConfig
 		SetAttachmentTier("Groza_Barrel_Short", "Muzzle_T1");
 		SetAttachmentTier("GCGN_M1Garand_Muzzle", "Muzzle_T1");
 		SetAttachmentTier("SNAFUShotgunchoke", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Base", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Black", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Blue", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Brown", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Green", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Purple", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Red", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Tur", "Muzzle_T1");
+		SetAttachmentTier("SNAFU_Shotgunchoke_Yellow", "Muzzle_T1");
 		SetAttachmentTier("Groza_Barrel_Grip", "Muzzle_T2");
 		SetAttachmentTier("sr25Muzzle", "Muzzle_T2");
 		SetAttachmentTier("snafu50bmg", "Muzzle_T3");
@@ -420,6 +456,7 @@ class SNAFUGunplayConfig
 		SetAttachmentTier("Mag_Expansion_Kedr_20Rnd", "StandardMag_Neutral");
 		SetAttachmentTier("Mag_Expansion_Vityaz_30Rnd", "StandardMag_Neutral");
 		SetAttachmentTier("Mag_Expansion_AWM_5rnd", "StandardMag_Neutral");
+		SetAttachmentTier("Mag_Expansion_Taser", "StandardMag_Neutral");
 	}
 	
 	void SetAttachmentTier(string className, string tierKey)
@@ -462,6 +499,127 @@ class SNAFUGunplayConfig
 	void ResetToDefaults()
 	{
 		ApplyDefaultValues();
-		Print("[SNAFU Gunplay] Config reset to hardcoded defaults");
+		Print("[SNAFU Gunplay] Config reset to defaults plus admin JSON");
+	}
+	
+	void ApplyAdminConfig(SNAFUGunplayAdminConfig adminConfig)
+	{
+		if (!adminConfig)
+		{
+			return;
+		}
+		
+		adminConfig.EnsureDefaults();
+		GlobalRecoilMultiplier = adminConfig.GlobalRecoilMultiplier;
+		GlobalSwayMultiplier = adminConfig.GlobalSwayMultiplier;
+		GlobalAimSpeedMultiplier = adminConfig.GlobalAimSpeedMultiplier;
+		GlobalHipFireMultiplier = adminConfig.GlobalHipFireMultiplier;
+		GlobalPrecisionMultiplier = adminConfig.GlobalPrecisionMultiplier;
+		EnableHipFireNerf = adminConfig.EnableHipFireNerf;
+		EnableWeaponGeometryDamage = adminConfig.EnableWeaponGeometryDamage;
+		DebugMode = adminConfig.DebugMode;
+		HighCapMagazineThreshold = adminConfig.HighCapMagazineThreshold;
+		
+		array<ref SNAFUAttachmentStatOverride> customStatOverrides = new array<ref SNAFUAttachmentStatOverride>;
+		foreach (SNAFUAttachmentStatOverride statOverride : adminConfig.AttachmentStatOverrides)
+		{
+			if (statOverride && !IsDefaultAttachmentStatOverride(statOverride))
+			{
+				customStatOverrides.Insert(statOverride);
+			}
+		}
+		
+		foreach (SNAFUAttachmentTierOverride tierAssignment : adminConfig.AttachmentTierOverrides)
+		{
+			if (tierAssignment && tierAssignment.ClassName != "" && tierAssignment.TierKey != "")
+			{
+				SetAttachmentTier(tierAssignment.ClassName, tierAssignment.TierKey);
+			}
+		}
+		
+		foreach (SNAFUTierMultiplierOverride tierOverride : adminConfig.TierMultiplierOverrides)
+		{
+			ApplyTierMultiplierOverride(tierOverride);
+		}
+		
+		foreach (SNAFUAttachmentStatOverride customStatOverride : customStatOverrides)
+		{
+			ApplyAttachmentStatOverride(customStatOverride);
+		}
+	}
+	
+	bool IsDefaultAttachmentStatOverride(SNAFUAttachmentStatOverride statOverride)
+	{
+		if (!statOverride || statOverride.ClassName == "")
+		{
+			return false;
+		}
+		
+		if (!AttachmentTiers || !AttachmentTiers.Contains(statOverride.ClassName))
+		{
+			return false;
+		}
+		
+		string tierKey = AttachmentTiers.Get(statOverride.ClassName);
+		if (!AttachmentTierEffects || !AttachmentTierEffects.Contains(tierKey))
+		{
+			return false;
+		}
+		
+		SNAFUTierEffect effect = AttachmentTierEffects.Get(tierKey);
+		if (!effect)
+		{
+			return false;
+		}
+		
+		return statOverride.Category == effect.Category && statOverride.Tier == effect.Tier && FloatClose(statOverride.Recoil, effect.Recoil) && FloatClose(statOverride.Sway, effect.Sway) && FloatClose(statOverride.ADS, effect.ADS) && FloatClose(statOverride.Precision, effect.Precision) && FloatClose(statOverride.HipFire, effect.HipFire);
+	}
+	
+	bool FloatClose(float a, float b)
+	{
+		float diff = a - b;
+		if (diff < 0.0)
+		{
+			diff = -diff;
+		}
+		
+		return diff < 0.0001;
+	}
+	
+	void ApplyTierMultiplierOverride(SNAFUTierMultiplierOverride tierOverride)
+	{
+		if (!tierOverride || tierOverride.TierKey == "")
+		{
+			return;
+		}
+		
+		if (!AttachmentTierEffects || !AttachmentTierEffects.Contains(tierOverride.TierKey))
+		{
+			return;
+		}
+		
+		SNAFUTierEffect effect = AttachmentTierEffects.Get(tierOverride.TierKey);
+		if (!effect)
+		{
+			return;
+		}
+		
+		effect.Recoil *= tierOverride.Recoil;
+		effect.Sway *= tierOverride.Sway;
+		effect.ADS *= tierOverride.ADS;
+		effect.Precision *= tierOverride.Precision;
+		effect.HipFire *= tierOverride.HipFire;
+	}
+	
+	void ApplyAttachmentStatOverride(SNAFUAttachmentStatOverride statOverride)
+	{
+		if (!statOverride || statOverride.ClassName == "")
+		{
+			return;
+		}
+		
+		string tierKey = "Admin_" + statOverride.ClassName;
+		SetTierEffect(tierKey, statOverride.Category, statOverride.Tier, statOverride.Recoil, statOverride.Sway, statOverride.ADS, statOverride.Precision, statOverride.HipFire);
+		SetAttachmentTier(statOverride.ClassName, tierKey);
 	}
 }

@@ -44,9 +44,9 @@ class CfgMods
 		action = "";
 		hideName = 0;
 		hidePicture = 0;
-		name = "SNAFU Gunplay Overhaul";
-		credits = "SNAFU Gunplay Team";
-		author = "SNAFU Gunplay Team";
+		name = "";
+		credits = "";
+		author = "Blubber";
 		authorID = "0";
 		version = "1.0";
 		extra = 0;

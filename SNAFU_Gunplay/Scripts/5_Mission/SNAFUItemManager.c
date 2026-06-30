@@ -29,6 +29,13 @@ modded class ItemManager
 			return;
 		}
 		
+		SNAFUGunplayAdminConfig adminConfig = SNAFUGetAdminConfig();
+		if (adminConfig && !adminConfig.EnableTooltipStats)
+		{
+			m_SNAFUStatsDisplay.Show(false);
+			return;
+		}
+		
 		if (!item)
 		{
 			m_SNAFUStatsDisplay.Show(false);

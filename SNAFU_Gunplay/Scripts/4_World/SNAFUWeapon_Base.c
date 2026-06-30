@@ -123,7 +123,7 @@ modded class Weapon_Base
 	
 	override RecoilBase SpawnRecoilObject()
 	{
-		if (m_StatsDirty)
+		if (SNAFUShouldApplyGunplay() && m_StatsDirty)
 		{
 			RecalculateStats();
 		}
@@ -133,6 +133,11 @@ modded class Weapon_Base
 	
 	float GetWeaponRecoilModifier()
 	{
+		if (!SNAFUShouldApplyGunplay())
+		{
+			return 1.0;
+		}
+		
 		if (m_StatsDirty)
 		{
 			RecalculateStats();
@@ -146,8 +151,13 @@ modded class Weapon_Base
 		return 1.0;
 	}
 	
-	float GetDispersion()
+	float GetAimingSwayModifier()
 	{
+		if (!SNAFUShouldApplyGunplay())
+		{
+			return 1.0;
+		}
+		
 		if (m_StatsDirty)
 		{
 			RecalculateStats();
@@ -155,14 +165,66 @@ modded class Weapon_Base
 		
 		if (m_StatsManager)
 		{
-			return m_StatsManager.GetCurrentSway() / m_StatsManager.GetCurrentPrecision();
+			float rawSway = m_StatsManager.GetCurrentSway() / m_StatsManager.GetCurrentPrecision();
+			return SNAFUGetADSSafeSwayModifier(rawSway);
 		}
 		
-		return 0.0;
+		return 1.0;
+	}
+	
+	float SNAFUGetADSSafeSwayModifier(float rawSway)
+	{
+		return SNAFUClampFloat(rawSway, 0.15, 1.0);
+	}
+	
+	float GetAimingSwaySpeedModifier()
+	{
+		if (!SNAFUShouldApplyGunplay())
+		{
+			return 1.0;
+		}
+		
+		if (m_StatsDirty)
+		{
+			RecalculateStats();
+		}
+		
+		if (m_StatsManager)
+		{
+			float rawSway = m_StatsManager.GetCurrentSway() / m_StatsManager.GetCurrentPrecision();
+			return SNAFUGetADSSafeSwaySpeedModifier(rawSway);
+		}
+		
+		return 1.0;
+	}
+	
+	float SNAFUGetADSSafeSwaySpeedModifier(float rawSway)
+	{
+		return SNAFUClampFloat(rawSway, 0.35, 1.0);
+	}
+	
+	float SNAFUClampFloat(float value, float minValue, float maxValue)
+	{
+		if (value < minValue)
+		{
+			return minValue;
+		}
+		
+		if (value > maxValue)
+		{
+			return maxValue;
+		}
+		
+		return value;
 	}
 	
 	float GetOpticsDisableLookOverride()
 	{
+		if (!SNAFUShouldApplyGunplay())
+		{
+			return 1.0;
+		}
+		
 		if (m_StatsDirty)
 		{
 			RecalculateStats();
@@ -200,6 +262,11 @@ modded class Weapon_Base
 	
 	float GetHipFireSpreadModifier()
 	{
+		if (!SNAFUShouldApplyGunplay())
+		{
+			return 1.0;
+		}
+		
 		if (m_StatsDirty)
 		{
 			RecalculateStats();
@@ -211,6 +278,11 @@ modded class Weapon_Base
 		}
 		
 		return 1.0;
+	}
+	
+	bool SNAFUShouldApplyGunplay()
+	{
+		return !SNAFUGunplayOwnership.ShouldSkipBecauseAJOwns(GetType());
 	}
 	
 	bool HasGripAttached()

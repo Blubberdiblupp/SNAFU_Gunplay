@@ -2,8 +2,22 @@ modded class CrossHairSelector
 {
 	override protected void SelectCrossHair()
 	{
+		SNAFUGunplayAdminConfig adminConfig = SNAFUGetAdminConfig();
+		if (adminConfig && adminConfig.CrosshairMode == 0)
+		{
+			super.SelectCrossHair();
+			return;
+		}
+		
 		if (!m_AM)
 		{
+			return;
+		}
+		
+		Weapon_Base weapon = Weapon_Base.Cast(m_Player.GetItemInHands());
+		if (!weapon || !weapon.SNAFUShouldApplyGunplay())
+		{
+			super.SelectCrossHair();
 			return;
 		}
 		
@@ -126,6 +140,12 @@ class SNAFUHipFireCrosshair: Managed
 	
 	protected bool CanShow(out Weapon_Base weapon)
 	{
+		SNAFUGunplayAdminConfig adminConfig = SNAFUGetAdminConfig();
+		if (!adminConfig || adminConfig.CrosshairMode == 0)
+		{
+			return false;
+		}
+		
 		if (!g_Game.GetProfileOption(EDayZProfilesOptions.CROSSHAIR) || g_Game.GetWorld().IsCrosshairDisabled())
 		{
 			return false;
@@ -153,12 +173,62 @@ class SNAFUHipFireCrosshair: Managed
 			return false;
 		}
 		
+		if (!weapon.SNAFUShouldApplyGunplay())
+		{
+			return false;
+		}
+		
+		if (adminConfig.CrosshairMode == 2 && !HasHipfireLaser(weapon))
+		{
+			return false;
+		}
+		
 		if (weapon.IsInOptics())
 		{
 			return false;
 		}
 		
 		return true;
+	}
+	
+	protected bool HasHipfireLaser(Weapon_Base weapon)
+	{
+		if (!weapon)
+		{
+			return false;
+		}
+		
+		if (weapon.FindAttachmentBySlotName("weaponLaserPointer")) return true;
+		if (weapon.FindAttachmentBySlotName("weaponLaser")) return true;
+		if (weapon.FindAttachmentBySlotName("PistolLaserPointer")) return true;
+		if (weapon.FindAttachmentBySlotName("SNAFUPEQLASER")) return true;
+		if (weapon.FindAttachmentBySlotName("Expansion_ANPEQ15_Base")) return true;
+		
+		if (weapon.GetInventory())
+		{
+			for (int i = 0; i < weapon.GetInventory().AttachmentCount(); i++)
+			{
+				EntityAI attachment = weapon.GetInventory().GetAttachmentFromIndex(i);
+				if (attachment && IsLaserType(attachment.GetType()))
+				{
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	protected bool IsLaserType(string itemType)
+	{
+		if (itemType.Contains("Laser")) return true;
+		if (itemType.Contains("PEQ")) return true;
+		if (itemType.Contains("ANPEQ")) return true;
+		if (itemType.Contains("NGAL")) return true;
+		if (itemType.Contains("DBAL")) return true;
+		if (itemType.Contains("MAWL")) return true;
+		
+		return false;
 	}
 	
 	protected bool GetWeaponProjectedPosition(Weapon_Base weapon, out vector worldPosition)

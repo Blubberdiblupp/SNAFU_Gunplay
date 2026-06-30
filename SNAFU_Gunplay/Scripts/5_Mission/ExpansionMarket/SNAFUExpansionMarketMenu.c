@@ -22,6 +22,13 @@ modded class ExpansionMarketMenu
 			return;
 		}
 		
+		SNAFUGunplayAdminConfig adminConfig = SNAFUGetAdminConfig();
+		if (adminConfig && !adminConfig.EnableExpansionMarketStats)
+		{
+			m_SNAFUMarketStatsDisplay.Show(false);
+			return;
+		}
+		
 		SNAFUDisplayData displayData = SNAFUDisplayStats.GetDisplay(item, itemType, attachmentTypes);
 		if (!displayData)
 		{

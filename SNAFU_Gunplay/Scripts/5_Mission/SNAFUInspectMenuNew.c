@@ -16,6 +16,13 @@ modded class InspectMenuNew
 			return;
 		}
 		
+		SNAFUGunplayAdminConfig adminConfig = SNAFUGetAdminConfig();
+		if (adminConfig && !adminConfig.EnableInspectStats)
+		{
+			m_SNAFUInspectStatsDisplay.Show(false);
+			return;
+		}
+		
 		SNAFUDisplayData displayData = SNAFUDisplayStats.GetDisplay(item);
 		if (!displayData)
 		{

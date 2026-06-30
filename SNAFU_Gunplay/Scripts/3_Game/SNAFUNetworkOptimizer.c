@@ -1,12 +1,3 @@
-/**
- * SNAFUNetworkOptimizer.c - Phase 11 + 12 (JSON CONFIGURABLE)
- * 
- * PHASE 12 CORRECTION:
- * - ALL attachment modifiers are now JSON-configurable
- * - Only truly cosmetic items are filtered (wraps, camo, slings)
- * - All stat-affecting attachments trigger recalculation
- */
-
 class SNAFUNetworkOptimizer
 {
 	protected static ref SNAFUNetworkOptimizer m_Instance;
